@@ -4,6 +4,8 @@
 let warImages = []; // Imagens de fundo variáveis por fase
 let currentWarImage;
 
+let minhaFonte; // Fone usada para placar e vidas
+
 let shipImage, shotImage, shot2Image, explosionImage;
 let gameOverImage, boxImage, menuImage, faseImage, pontosImage;
 let obstacleImages = [];
@@ -53,6 +55,9 @@ function preload() {
   somExplode = loadSound('sounds/explode.wav');
   somSecret = loadSound('sounds/bonus.wav');
 
+  // Carrega a fonte utilizada para o placar e as vidas
+  minhaFonte = loadFont('fonts/PressStart2P_Regular.ttf');
+
   // Carrega imagens do fundo para diferentes fases
   for (let i = 0; i <= 7; i++) {
     warImages.push(loadImage(`assets/war${i}.jpg`));
@@ -80,7 +85,7 @@ function setup() {
   createCanvas(1280, 720);
   shipX = 100;
   shipY = height / 2 - 50;
-  textFont('Georgia');
+  textFont(minhaFonte);
 
   // Toca a música em loop
     musicaFundo.setLoop(true);
@@ -315,11 +320,12 @@ if (!obs.hit && collideRectRect(shipX, shipY, shipImage.width, shipImage.height,
 
   // HUD: Pontuação e vidas
   image(pontosImage, 10, 10);
-  textSize(24);
-  textFont('Georgia')
-  fill('#0F0F0F');
-  text(score, 90, 63);
-  text(lives, 233, 63);
+  textSize(18);
+  textFont(minhaFonte)
+  fill('#854F3A');
+  text(score, 90, 65);
+  fill('#854F3A');
+  text(lives, 233, 65);
 }
 
 // Entrada de teclas
